@@ -24,8 +24,8 @@ export default {
   setup() {
     // set up grid
     const tileWidth = 70;
-    let columns = ref(0);
-    let rows = ref(0);
+    let columns = ref(14),
+      rows = ref(10);
 
     // get grid once mounted
     function calculateGrid() {
@@ -66,7 +66,7 @@ export default {
         targets: ".tile",
         backgroundColor: getColor(),
         delay: anime.stagger(50, {
-          grid: [rows.value, columns.value],
+          grid: [columns.value, rows.value],
           from: index,
         }),
       });
@@ -79,8 +79,8 @@ export default {
 
 <style scoped>
 #tiles {
-  height: 100vh;
-  width: 100wh;
+   height: calc(100vh - 1px);
+  width: calc(100vw - 1px);
   display: grid;
   grid-template-columns: repeat(v-bind(columns), 1fr);
   grid-template-rows: repeat(v-bind(rows), 1fr);
