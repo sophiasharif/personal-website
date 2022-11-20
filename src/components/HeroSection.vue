@@ -1,11 +1,5 @@
 <template>
   <div id="tiles">
-    <!-- <div
-      class="tile"
-      v-for="id in rows * columns"
-      :key="id"
-      @click="handleClick(id)"
-    ></div> -->
   </div>
   <div class="introduction">
     <h1 class="name">sophia sharif</h1>
@@ -83,13 +77,6 @@ export default {
       calculateGrid();
       createGrid(rows.value * columns.value);
     });
-    // window.onresize = recalculateGrid();
-
-    
-
-    // handle click on tile
-
-    
 
     return { rows, columns, handleClick };
   },
