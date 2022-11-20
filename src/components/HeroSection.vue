@@ -23,7 +23,7 @@ import { onMounted } from "@vue/runtime-core";
 export default {
   setup() {
     // set up grid
-    const tileWidth = 60;
+    const tileWidth = 70;
     let columns = ref(0);
     let rows = ref(0);
 
@@ -77,7 +77,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #tiles {
   height: 100vh;
   width: 100wh;
