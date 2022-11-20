@@ -12,7 +12,6 @@
     <h2 class="subtitle">computer science student at ucla</h2>
     <p class="note">click a tile!</p>
   </div>
- 
 </template>
 
 <script>
@@ -23,14 +22,14 @@ import { onMounted } from "@vue/runtime-core";
 export default {
   setup() {
     // set up grid
-    const tileWidth = 70;
+    const tileWidth = 60;
     let columns = ref(14),
       rows = ref(10);
 
     // get grid once mounted
     function calculateGrid() {
-      columns.value = Math.floor(document.body.clientWidth / tileWidth);
-      rows.value = Math.floor(document.body.clientHeight / tileWidth);
+      columns.value = Math.floor(window.innerWidth/ tileWidth);
+      rows.value = Math.floor(window.innerHeight / tileWidth);
     }
     onMounted(() => calculateGrid());
 
@@ -54,6 +53,7 @@ export default {
         "#3F0071",
         "#150050",
         "#4C0033",
+        "#191919",
       ];
       const chosenColor = colors[colorCount % colors.length];
       currentColor = chosenColor; // update color of the screen so resizing is not awk
@@ -79,7 +79,7 @@ export default {
 
 <style scoped>
 #tiles {
-   height: calc(100vh - 1px);
+  height: calc(100vh - 1px);
   width: calc(100vw - 1px);
   display: grid;
   grid-template-columns: repeat(v-bind(columns), 1fr);
