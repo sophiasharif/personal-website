@@ -10,7 +10,7 @@
   <div class="introduction">
     <h1 class="name">sophia sharif</h1>
     <h2 class="subtitle">computer science student at ucla</h2>
-     <p class="note">click a tile!</p>
+    <p class="note">click a tile!</p>
   </div>
  
 </template>
@@ -23,32 +23,45 @@ import { onMounted } from "@vue/runtime-core";
 export default {
   setup() {
     // set up grid
-    const tileWidth = 50;
+    const tileWidth = 60;
     let columns = ref(0);
     let rows = ref(0);
 
-    // adjust for window resizes
+    // get grid once mounted
     function calculateGrid() {
       columns.value = Math.floor(document.body.clientWidth / tileWidth);
       rows.value = Math.floor(document.body.clientHeight / tileWidth);
     }
-
     onMounted(() => calculateGrid());
+
+    // adjust for window resizes
+    let currentColor = "#191919";
     window.onresize = () => {
       calculateGrid();
-      document.querySelectorAll(".tile").forEach(tile => tile.style.backgroundColor = "#191919");
+      document
+        .querySelectorAll(".tile") // set all new tiles to the same color
+        .forEach((tile) => (tile.style.backgroundColor = currentColor));
     };
 
     // color generator
     let colorCount = 0;
     function getColor() {
       colorCount++;
-      const colors = ["#34568B", "#FF6F61", "#6B5B95", "#3F0071", "#150050", "#4C0033"];
-      return colors[colorCount % colors.length];
+      const colors = [
+        "#34568B",
+        "#FF6F61",
+        "#6B5B95",
+        "#3F0071",
+        "#150050",
+        "#4C0033",
+      ];
+      const chosenColor = colors[colorCount % colors.length];
+      currentColor = chosenColor; // update color of the screen so resizing is not awk
+      return chosenColor;
     }
 
+    // color boxes on click
     function handleClick(index) {
-
       anime({
         targets: ".tile",
         backgroundColor: getColor(),
@@ -78,6 +91,7 @@ export default {
   animation: background-pan 5s ease infinite;
 }
 
+/* gradient animation */
 @keyframes background-pan {
   from {
     background-position: 0% center;
@@ -99,27 +113,25 @@ export default {
 }
 
 .introduction {
-  /* height: 50px;
-  width: 50px; */
-  width: 50%;
-  height: 20%;
+  color: white;
+  margin: 0px;
+  pointer-events: none;
+  width: 50vw;
+
+  /* positioning */
   position: absolute;
-  top: 25%;
-  left: 15%;
+  left: 35%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 h1.name {
-  /* position: absolute;
-  top: 20%; */
-  left: 20%;
   color: white;
   font-size: 70px;
 }
 
 h2.subtitle {
-  /* position: absolute;
-  top: 60%; */
-  left: 20%;
   font-size: 25px;
   font-weight: 400;
   color: white;
@@ -127,7 +139,6 @@ h2.subtitle {
 
 p.note {
   color: white;
-  left: 20%;
   font-size: 20px;
 }
 </style>
