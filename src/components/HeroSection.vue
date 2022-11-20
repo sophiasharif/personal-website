@@ -1,14 +1,13 @@
 <template>
   <div id="tiles">
-    <div
+    <!-- <div
       class="tile"
       v-for="id in rows * columns"
       :key="id"
       @click="handleClick(id)"
-    ></div>
+    ></div> -->
   </div>
   <div class="introduction">
-
     <h1 class="name">sophia sharif</h1>
     <h2 class="subtitle">computer science student at ucla</h2>
   </div>
@@ -17,7 +16,7 @@
 <script>
 import { ref } from "@vue/reactivity";
 import anime from "animejs/lib/anime.es.js";
-import { onMounted } from '@vue/runtime-core';
+import { onMounted } from "@vue/runtime-core";
 
 export default {
   setup() {
@@ -32,21 +31,15 @@ export default {
       rows.value = Math.floor(document.body.clientHeight / tileWidth);
     }
 
-    onMounted(() => calculateGrid())
-    window.onresize = calculateGrid;
-
     // color generator
     let colorCount = 0;
     function getColor() {
-      colorCount++
+      colorCount++;
       const colors = ["#34568B", "#FF6F61", "#6B5B95", "#88B04B"];
       // const colors = ["#3F0071", "#150050", "#4C0033", "#4C3A51"];
-      return colors[colorCount%(colors.length)]
+      return colors[colorCount % colors.length];
     }
 
-    // handle click on tile
-    
-    
     function handleClick(index) {
       console.log(index, "updating color count to ", colorCount);
 
@@ -59,6 +52,44 @@ export default {
         }),
       });
     }
+
+    function createTile(index) {
+      let tile = document.createElement("div");
+      tile.classList.add("tile");
+      tile.onclick = () => handleClick(index);
+      return tile;
+    }
+
+    function createGrid(numTiles) {
+      let grid = document.getElementById("tiles");
+      for (let i = 0; i < numTiles; i++) {
+        grid.appendChild(createTile(i));
+      }
+    }
+
+    function resetBoard() {
+      document.getElementById("tiles").innerHTML = "";
+    }
+
+    window.onresize = () => {
+      resetBoard();
+      calculateGrid();
+      createGrid(rows.value*columns.value)
+    }
+
+    
+
+    onMounted(() => {
+      calculateGrid();
+      createGrid(rows.value * columns.value);
+    });
+    // window.onresize = recalculateGrid();
+
+    
+
+    // handle click on tile
+
+    
 
     return { rows, columns, handleClick };
   },
