@@ -1,34 +1,40 @@
 <template>
-  <HighlightCard>
-    <h3>Coursework</h3>
-    <div class="grid">
+  <div class="grid">
+    <HighlightCard class="math">
       <header class="math-coursework">Math Courses</header>
-      <header class="cs-courseword">CS Courses</header>
-    </div>
-    <div class="grid gradient-background">
-      <div class="col">
-        <ClassCard className="Discrete Structures" />
-        <ClassCard className="Differential Equations" />
-        <ClassCard className="Probability and Combinatorics" />
-        <ClassCard className="Integration and Infinite Series" />
+      <div class="math-grid gradient-background">
+         <div class="col">
+          <ClassCard className="Discrete Structures" />
+          <ClassCard className="Differential Equations" />
+          <ClassCard className="Probability and Combinatorics" />
+          <ClassCard className="Integration and Infinite Series" />
+        </div>
+        <div class="col">
+          <ClassCard
+            className="Differential Multivariable Calculus (Honors)"
+            :scale="2"
+          />
+          <ClassCard
+            className="Integral Multivariable Calculus (Honors)"
+            :scale="3"
+          />
+          <ClassCard className="Number Theory" :scale="3" />
+          <ClassCard className="Differential and Integral Calculus" />
+        </div>
       </div>
-      <div class="col">
-        <ClassCard
-          className="Differential Multivariable Calculus (Honors)"
-          :scale="2"
-        />
-        <ClassCard className="Integral Multivariable Calculus (Honors)" :scale="3"/>
-         <ClassCard className="Number Theory" :scale="3" />
-        <ClassCard className="Differential and Integral Calculus" />
-      </div>
-      <div class="col">
+    </HighlightCard>
+    <HighlightCard class="cs">
+      <header class="cs-coursework">CS Courses</header>
+      <div class="cs-grid gradient-background">
+        <div class="col">
         <ClassCard className="Data Structures and Algorithms" />
         <ClassCard className="Computer Organization" />
         <ClassCard className="Software Construction Lab" />
         <ClassCard className="Algorithms and Complexity" />
       </div>
-    </div>
-  </HighlightCard>
+      </div>
+    </HighlightCard>
+  </div>
 </template>
 
 <script>
@@ -45,7 +51,7 @@ export default {
   grid-template-columns: repeat(3, 1fr);
   gap: 3px;
   padding: 3px;
-  width: 800px;
+  max-width: 900px;
 }
 .gradient-background {
   background: linear-gradient(to right, red, blue, red);
@@ -63,18 +69,11 @@ header {
   display: flex;
   justify-content: center;
 }
-header.math-coursework {
-  grid-column-start: 1;
-  grid-column-end: 3;
-}
-header.cs-coursework {
-  grid-column: span(1);
-}
 .col {
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  height: 400px;
+  gap: 1.5px;
+  min-height: 430px;
 }
 
 /* gradient animation */
@@ -85,5 +84,21 @@ header.cs-coursework {
   to {
     background-position: -200% center;
   }
+}
+
+/* math courses */
+.math {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+.math-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5px;
+  padding: 1.5px;
+}
+/* cs courses */
+.cs-grid {
+  padding: 1.5px;
 }
 </style>

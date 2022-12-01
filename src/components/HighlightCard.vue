@@ -15,6 +15,6 @@ section {
  background: #1F1B24;
  border-radius: 10px;
  padding: 30px;
- padding-top: 0px;
+ margin: 0 15px;
 }
 </style>
