@@ -1,16 +1,18 @@
 <template>
   <HeroSection/>
   <SkillsAndProjects/>
+  <HighlightSection/>
 </template>
 
 <script>
 import HeroSection from './components/HeroSection.vue'
 import SkillsAndProjects from './components/SkillsAndProjects.vue'
+import HighlightSection from './components/HighlightSection.vue'
 
 export default {
   name: 'App',
   components: {
-    HeroSection, SkillsAndProjects
+    HeroSection, SkillsAndProjects, HighlightSection
   }
 }
 </script>

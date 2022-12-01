@@ -23,8 +23,8 @@ export default {
   setup() {
     // set up grid
     const tileWidth = 60;
-    let columns = ref(14),
-      rows = ref(10);
+    let columns = ref(0),
+      rows = ref(0);
 
     // get grid once mounted
     function calculateGrid() {
@@ -67,7 +67,7 @@ export default {
         backgroundColor: getColor(),
         delay: anime.stagger(50, {
           grid: [columns.value, rows.value],
-          from: index,
+          from: index-1,
         }),
       });
     }
@@ -140,5 +140,9 @@ h2.subtitle {
 p.note {
   color: white;
   font-size: 20px;
+}
+
+.tiles::after {
+  background-image: url('../assets/profile-pic.jpg');
 }
 </style>
