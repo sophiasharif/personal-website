@@ -4,10 +4,10 @@
       class="tile"
       v-for="id in rows * columns"
       :key="id"
-      @click="handleClick(id)"
+      @click="colorGrid(id)"
     ></div>
   </div>
-  <div class="introduction">
+  <div class="introduction" :class="{invisible: routerShown}">
     <h1 class="name">sophia sharif</h1>
     <h2 class="subtitle">computer science student at ucla</h2>
     <p class="note">click a tile!</p>
@@ -20,7 +20,8 @@ import anime from "animejs/lib/anime.es.js";
 import { onMounted } from "@vue/runtime-core";
 
 export default {
-  setup() {
+  props: ["routerShown"],
+  setup(props) {
     // set up grid
     const tileWidth = 60;
     let columns = ref(0),
@@ -61,7 +62,7 @@ export default {
     }
 
     // color boxes on click
-    function handleClick(index) {
+    function colorGrid(index) {
       anime({
         targets: ".tile",
         backgroundColor: getColor(),
@@ -72,7 +73,27 @@ export default {
       });
     }
 
-    return { rows, columns, handleClick };
+    function dissolveGrid() {
+      anime({
+        targets: ".tile",
+        opacity: props.routerShown ? 1 : 0, 
+        delay: anime.stagger(50, {
+          grid: [columns.value, rows.value],
+          from: columns.value*rows.value / 2,
+        }),
+      });
+    }
+
+    function getGridPointerEvents() {
+      if (props.routerShown) {
+        return "none"
+      } else {
+        return "auto"
+      }
+    }
+
+
+    return { rows, columns, colorGrid, dissolveGrid, getGridPointerEvents };
   },
 };
 </script>
@@ -84,21 +105,8 @@ export default {
   display: grid;
   grid-template-columns: repeat(v-bind(columns), 1fr);
   grid-template-rows: repeat(v-bind(rows), 1fr);
-
-  /* gradient background */
-  background: linear-gradient(to right, red, blue, red);
-  background-size: 200%;
-  animation: background-pan 5s ease infinite;
-}
-
-/* gradient animation */
-@keyframes background-pan {
-  from {
-    background-position: 0% center;
-  }
-  to {
-    background-position: -200% center;
-  }
+  z-index: 5;
+  pointer-events: v-bind(getGridPointerEvents());
 }
 
 .tile {
@@ -115,8 +123,8 @@ export default {
 .introduction {
   color: white;
   margin: 0px;
-  pointer-events: none;
   width: 50vw;
+  transition: opacity .5s ease;
 
   /* positioning */
   position: absolute;
@@ -124,6 +132,10 @@ export default {
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+}
+
+.invisible {
+  opacity: 0;
 }
 
 h1.name {
@@ -145,4 +157,7 @@ p.note {
 .tiles::after {
   background-image: url('../assets/profile-pic.jpg');
 }
+
+
+
 </style>

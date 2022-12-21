@@ -51,7 +51,7 @@ export default {
   grid-template-columns: repeat(3, 1fr);
   gap: 3px;
   padding: 3px;
-  max-width: 900px;
+  max-width: 1100px;
 }
 .gradient-background {
   background: linear-gradient(to right, red, blue, red);
