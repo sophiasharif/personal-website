@@ -1,6 +1,8 @@
 <template>
   <div id="router" :class="{ hidden: !routerShown }">
-    <router-view />
+    <Transition name="fade">
+    <router-view v-if="routerShown"/>
+    </Transition>
   </div>
   <HeroSection :routerShown="routerShown" ref="grid" />
   <nav>
@@ -31,10 +33,12 @@ export default {
     return {
       routerShown: false,
       test: "auto",
+      transition: "opacity 1.1s cubic-bezier(.86,-0.03,.75,.05)"
     };
   },
   methods: {
     dissolveGrid() {
+      this.transition = "opacity .4s cubic-bezier(.57,.08,.21,.26)"
       this.routerShown = true;
       this.$refs.grid.dissolveGrid();
     },
@@ -43,6 +47,7 @@ export default {
       this.$refs.grid.revealGrid();
     },
     transitionGrid() {
+      this.transition = "opacity 1.1s cubic-bezier(.86,-0.03,.75,.05)"
       this.$refs.grid.transitionGrid();
     },
     getRouterPointerEvents() {
@@ -58,13 +63,21 @@ export default {
       } else {
         this.transitionGrid()
       }
-    }
+    },
   },
 };
 </script>
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:wght@400;700&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+.fade-enter-active,
+.fade-leave-active {
+  transition: v-bind(transition);
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 
 #app {
   font-family: Roboto Mono, Avenir, Helvetica, Arial, sans-serif;
