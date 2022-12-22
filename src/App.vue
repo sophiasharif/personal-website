@@ -9,15 +9,21 @@
     <router-link @click="revealGrid" to="/">
       <button>Home</button>
     </router-link>
-    <router-link @click="handleRouteChange" to="/projects">
+    <!-- <router-link @click="handleRouteChange" to="/projects">
       <button>Projects</button>
     </router-link>
     <router-link to="/skills">
-      <button @click="handleRouteChange">Skills</button>
-    </router-link>
+      <button @click="handleRouteChange">Skills + Coursework</button>
+    </router-link> -->
     <router-link to="/achievements">
       <button @click="handleRouteChange">Achievements</button>
     </router-link>
+    <!-- <router-link to="#">
+      <button @click="handleRouteChange">Blog</button>
+    </router-link>
+    <router-link to="#">
+      <button @click="handleRouteChange">About Me</button>
+    </router-link> -->
   </nav>
 </template>
 
@@ -78,11 +84,14 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
-
 #app {
   font-family: Roboto Mono, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+html, body {
+  height: 100%;
+  overflow: hidden;
 }
 body {
   pointer-events: none;
@@ -103,13 +112,14 @@ body {
     background-position: -200% center;
   }
 }
-
 nav {
   position: absolute;
   left: 0;
   top: 0;
+  width: 100%;
   display: flex;
-  gap: 20px;
+  padding-left: 10px;
+  padding-top: 5px;
 }
 button {
   pointer-events: auto;
@@ -118,9 +128,10 @@ button {
   border: none;
   padding: 0.5rem;
   margin: 0.5rem;
-  border-radius: 10%;
+  border-radius: 12%;
   box-shadow: 0rem 0rem 1.5rem;
   color: white;
+  margin-right: 20px;
 }
 a {
   text-decoration: none;
@@ -140,5 +151,23 @@ a {
 }
 .hidden {
   opacity: 0;
+}
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+header h2 {
+  font-size: 2rem;
+  line-height: 0;
+}
+header .description {
+  max-width: 850px;
+  text-align: center;
+}
+header .description h3 {
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-top: 1rem;
 }
 </style>

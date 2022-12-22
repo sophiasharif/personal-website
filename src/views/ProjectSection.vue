@@ -1,5 +1,4 @@
 <template>
-  <div id="projects">
     <header>
       <h2>Projects</h2>
       <div class="description">
@@ -51,7 +50,6 @@
         class="card"
       />
     </div>
-  </div>
 </template>
 
 <script>
@@ -82,6 +80,7 @@ header .description h3 {
   justify-content: center;
   padding: 3rem;
   overflow-x: scroll;
+  width: 100%;
 }
 .card:hover {
   transform: translateY(-1rem) rotate(3deg);
