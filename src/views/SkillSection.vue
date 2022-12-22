@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import ClassCard from "./ClassCard.vue";
-import HighlightCard from "./HighlightCard.vue";
+import ClassCard from "../components/ClassCard.vue";
+import HighlightCard from "../components/HighlightCard.vue";
 export default {
   components: { ClassCard, HighlightCard },
 };

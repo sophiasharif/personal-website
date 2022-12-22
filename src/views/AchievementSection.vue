@@ -1,5 +1,6 @@
 <template>
-  <div class="achievement-deck">
+<div>
+<div class="achievement-deck">
     <AchievementCard
       class="card"
       v-for="(a, i) in achievements"
@@ -17,10 +18,12 @@
     <div class="backward button" @click="handleBackward">backward</div>
     <div class="forward button" @click="handleForward">forward</div>
   </div>
+</div>
+  
 </template>
 
 <script>
-import AchievementCard from "./AchievementCard.vue";
+import AchievementCard from "../components/AchievementCard.vue";
 
 export default {
   components: {

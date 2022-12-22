@@ -1,49 +1,70 @@
 <template>
-  <HeroSection :routerShown="routerShown" ref="grid"/>
-  <nav>
-    <button @click="handleDissolve">Dissolve</button>
-  </nav>
-  <div id="router" :class="{hidden: !routerShown}">
-    <router-view/>
+  <div id="router" :class="{ hidden: !routerShown }">
+    <router-view />
   </div>
+  <HeroSection :routerShown="routerShown" ref="grid" />
+  <nav>
+    <router-link @click="revealGrid" to="/">
+      <button>Home</button>
+    </router-link>
+    <router-link @click="handleRouteChange" to="/projects">
+      <button>Projects</button>
+    </router-link>
+    <router-link to="/skills">
+      <button @click="handleRouteChange">Skills</button>
+    </router-link>
+    <router-link to="/achievements">
+      <button @click="handleRouteChange">Achievements</button>
+    </router-link>
+  </nav>
 </template>
 
 <script>
-import HeroSection from './components/HeroSection.vue'
+import HeroSection from "./views/HeroSection.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HeroSection
+    HeroSection,
   },
   data() {
     return {
       routerShown: false,
-      test: "auto"
-    }
+      test: "auto",
+    };
   },
   methods: {
-    handleDissolve() {
-      this.routerShown = !this.routerShown;
+    dissolveGrid() {
+      this.routerShown = true;
       this.$refs.grid.dissolveGrid();
+    },
+    revealGrid() {
+      this.routerShown = false;
+      this.$refs.grid.revealGrid();
+    },
+    transitionGrid() {
+      this.$refs.grid.transitionGrid();
     },
     getRouterPointerEvents() {
       if (this.routerShown) {
-        return "auto"
+        return "auto";
       } else {
-        return "none"
+        return "none";
+      }
+    },
+    handleRouteChange() {
+      if (!this.routerShown) {
+        this.dissolveGrid()
+      } else {
+        this.transitionGrid()
       }
     }
-  }
-}
+  },
+};
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:wght@400;700&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
-
-button {
-  pointer-events: auto;
-}
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:wght@400;700&family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 
 #app {
   font-family: Roboto Mono, Avenir, Helvetica, Arial, sans-serif;
@@ -61,22 +82,6 @@ body {
   background-size: 200%;
   animation: background-pan 5s ease infinite;
 }
-nav {
-  position: absolute;
-  right: 400px;
-  top: 300px;
-}
-#router {
-  position: absolute;
-  top: 200px;
-  right: 630px;
-  z-index: -1;
-  transition: opacity .5s ease;
-  pointer-events: v-bind(getRouterPointerEvents());
-}
-.hidden {
-  opacity: 0;
-}
 @keyframes background-pan {
   from {
     background-position: 0% center;
@@ -86,4 +91,41 @@ nav {
   }
 }
 
+nav {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  gap: 20px;
+}
+button {
+  pointer-events: auto;
+  font: inherit;
+  background: #17141d;
+  border: none;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 10%;
+  box-shadow: 0rem 0rem 1.5rem;
+  color: white;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+
+#router {
+  z-index: -1;
+  transition: opacity 0.5s ease;
+  pointer-events: v-bind(getRouterPointerEvents());
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.hidden {
+  opacity: 0;
+}
 </style>

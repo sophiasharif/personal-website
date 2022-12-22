@@ -7,7 +7,7 @@
       @click="colorGrid(id)"
     ></div>
   </div>
-  <div class="introduction" :class="{invisible: routerShown}">
+  <div class="introduction" :class="{ invisible: routerShown }">
     <h1 class="name">sophia sharif</h1>
     <h2 class="subtitle">computer science student at ucla</h2>
     <p class="note">click a tile!</p>
@@ -29,7 +29,7 @@ export default {
 
     // get grid once mounted
     function calculateGrid() {
-      columns.value = Math.floor(window.innerWidth/ tileWidth);
+      columns.value = Math.floor(window.innerWidth / tileWidth);
       rows.value = Math.floor(window.innerHeight / tileWidth);
     }
     onMounted(() => calculateGrid());
@@ -68,7 +68,7 @@ export default {
         backgroundColor: getColor(),
         delay: anime.stagger(50, {
           grid: [columns.value, rows.value],
-          from: index-1,
+          from: index - 1,
         }),
       });
     }
@@ -76,24 +76,63 @@ export default {
     function dissolveGrid() {
       anime({
         targets: ".tile",
-        opacity: props.routerShown ? 1 : 0, 
+        opacity: 0,
         delay: anime.stagger(50, {
           grid: [columns.value, rows.value],
-          from: columns.value*rows.value / 2,
+          from: (columns.value * rows.value) / 2,
         }),
       });
     }
 
+    function revealGrid() {
+      anime({
+        targets: ".tile",
+        opacity: 1,
+        delay: anime.stagger(50, {
+          grid: [columns.value, rows.value],
+          from: (columns.value * rows.value) / 2,
+        }),
+      });
+    }
+
+    function transitionGrid() {
+      let timeline = anime.timeline();
+      timeline.add({
+        targets: ".tile",
+        opacity: 1,
+        delay: anime.stagger(50, {
+          grid: [columns.value, rows.value],
+          from: (columns.value * rows.value) / 2,
+        }),
+      })
+      timeline.add({
+        targets: ".tile",
+        opacity: 0,
+        delay: anime.stagger(50, {
+          grid: [columns.value, rows.value],
+          from: (columns.value * rows.value) / 2,
+        }),
+      }, "-=870")
+      timeline.play()
+    }
+
     function getGridPointerEvents() {
       if (props.routerShown) {
-        return "none"
+        return "none";
       } else {
-        return "auto"
+        return "auto";
       }
     }
 
-
-    return { rows, columns, colorGrid, dissolveGrid, getGridPointerEvents };
+    return {
+      rows,
+      columns,
+      colorGrid,
+      dissolveGrid,
+      revealGrid,
+      transitionGrid,
+      getGridPointerEvents,
+    };
   },
 };
 </script>
@@ -105,8 +144,10 @@ export default {
   display: grid;
   grid-template-columns: repeat(v-bind(columns), 1fr);
   grid-template-rows: repeat(v-bind(rows), 1fr);
-  z-index: 5;
   pointer-events: v-bind(getGridPointerEvents());
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .tile {
@@ -124,7 +165,7 @@ export default {
   color: white;
   margin: 0px;
   width: 50vw;
-  transition: opacity .5s ease;
+  transition: opacity 0.5s ease;
 
   /* positioning */
   position: absolute;
@@ -155,9 +196,6 @@ p.note {
 }
 
 .tiles::after {
-  background-image: url('../assets/profile-pic.jpg');
+  background-image: url("../assets/profile-pic.jpg");
 }
-
-
-
 </style>
