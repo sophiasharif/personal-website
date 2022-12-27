@@ -7,6 +7,9 @@
 </template>
 
 <script>
+import transX from '../composables/getTranslationX'
+import rot from '../composables/getRotation'
+
 export default {
   props: ["date", "title", "content", "index", "degSpanMobile", "xSpanMobile","degSpanTablet", "xSpanTablet", "degSpanDesktop", "xSpanDesktop", "nCards"],
   computed: {
@@ -35,16 +38,11 @@ export default {
       }
     },
     rotation() {
-      const start = (this.degSpan / 2) * -1;
-      const stagger = this.degSpan / (this.nCards - 1);
-      const res = stagger * this.index + start
-      return res;
+      return rot(this.degSpan, this.nCards, this.index)
     },
-    translation() {
-        const stagger = this.xSpan * 2 /(this.nCards-1);
-        const res = -this.xSpan+stagger*this.index
-        return res
-    },
+    translationX() {
+      return transX(this.xSpan, this.nCards, this.index)
+    }
   },
 };
 </script>
@@ -62,7 +60,7 @@ export default {
   border-radius: 10px;
 
   position: absolute;
-  transform: translate(v-bind(translation+'%')) rotate(v-bind(rotation+'deg'));
+  transform: translate(v-bind(translationX)) rotate(v-bind(rotation));
   transition: transform 200ms;
 }
 

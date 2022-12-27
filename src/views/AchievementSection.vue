@@ -20,18 +20,18 @@
         :content="a.content"
         :index="i"
         :degSpanMobile="8"
-        :xSpanMobile="4"
+        :xSpanMobile="8"
         :degSpanTablet="8"
-        :xSpanTablet="15"
+        :xSpanTablet="30"
         :degSpanDesktop="16"
-        :xSpanDesktop="40"
+        :xSpanDesktop="80"
         :nCards="achievements.length"
         :key="a"
         @click="handleClick"
       />
     </div>
     <div class="buttons" v-if="!mqTablet.matches">
-      <ion-icon name="arrow-back-circle-outline"></ion-icon>
+      <ion-icon name="arrow-back-circle-outline" @click="handleBackward"></ion-icon>
       <ion-icon
         name="arrow-forward-circle-outline"
         @click="handleForward"
@@ -42,6 +42,10 @@
 
 <script>
 import AchievementCard from "../components/AchievementCard.vue";
+import transX from "../composables/getTranslationX"
+import transY from "../composables/getTranslationY"
+import rot from "../composables/getRotation"
+
 
 export default {
   components: {
@@ -55,7 +59,7 @@ export default {
       return window.matchMedia("(max-width: 770px)");
     },
     mqHeight() {
-      return window.matchMedia("(min-height: 700px)");
+      return window.matchMedia("(min-height: 800px)");
     }
   },
   data() {
@@ -105,13 +109,14 @@ export default {
   },
   methods: {
     handleForward() {
-      console.log("you go forward");
       this.achievements.unshift(this.achievements.pop());
       console.log(this.achievements);
     },
     handleBackward() {
-      // this.achievements.shift(this.achievements.)
-      console.log("you go backward");
+      const temp = this.achievements.shift()
+      console.log(this.achievements)
+      this.achievements.push(temp)
+      // this.achievements.append(temp)
     },
     handleClick() {
       if (this.mqTablet.matches) {
@@ -119,20 +124,13 @@ export default {
       }
     },
     getTranslationX(i) {
-      const stagger = this.animationXSpan / (this.achievements.length - 1);
-      const res = -this.animationXSpan / 2 + stagger * (i - 1);
-      return res + "%";
+      return transX(this.animationXSpan, this.achievements.length, i-1) 
     },
     getTranslationY(i) {
-      const stagger =
-        (this.animationYSpan * 2) / (this.achievements.length - 1);
-      const res = Math.abs(this.animationYSpan - stagger * (i - 1));
-      return res + "%";
+      return transY(this.animationYSpan, this.achievements.length, i-1)
     },
     getRotation(i) {
-      const stagger = this.animationDegSpan / (this.achievements.length - 1);
-      const res = -this.animationDegSpan / 2 + stagger * (i - 1);
-      return res + "deg";
+      return rot(this.animationDegSpan, this.achievements.length, i-1)
     },
   },
 };
@@ -152,6 +150,24 @@ export default {
 ion-icon {
   font-size: 64px;
 }
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+header h2 {
+  font-size: 2rem;
+  line-height: 0;
+}
+header .description {
+  max-width: 850px;
+  text-align: center;
+}
+header .description h3 {
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-top: 1rem;
+}
 /* center card deck */
 .achievement-deck {
   display: grid;
@@ -159,7 +175,7 @@ ion-icon {
   height: 450px;
 }
 /* spread on hover -- only for larger screens  */
-@media (min-width: 900px) {
+@media (min-width: 770px) {
   .achievement-deck:hover > .card:nth-child(1) {
     transform: translate(v-bind(getTranslationX(1)), v-bind(getTranslationY(1)))
       rotate(v-bind(getRotation(1)));
@@ -191,4 +207,5 @@ ion-icon {
     transition: transform 800ms cubic-bezier(0.05, 0.43, 0.25, 0.95);
   }
 }
+
 </style>

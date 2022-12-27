@@ -3,27 +3,28 @@
     <Transition name="fade">
     <router-view v-if="routerShown"/>
     </Transition>
+    
   </div>
   <HeroSection :routerShown="routerShown" ref="grid" />
   <nav>
     <router-link @click="revealGrid" to="/">
       <button>Home</button>
     </router-link>
-    <!-- <router-link @click="handleRouteChange" to="/projects">
+    <router-link @click="handleRouteChange" to="/projects">
       <button>Projects</button>
     </router-link>
     <router-link to="/skills">
       <button @click="handleRouteChange">Skills + Coursework</button>
-    </router-link> -->
+    </router-link>
     <router-link to="/achievements">
       <button @click="handleRouteChange">Achievements</button>
     </router-link>
-    <!-- <router-link to="#">
+    <router-link to="#">
       <button @click="handleRouteChange">Blog</button>
     </router-link>
     <router-link to="#">
       <button @click="handleRouteChange">About Me</button>
-    </router-link> -->
+    </router-link>
   </nav>
 </template>
 
@@ -151,23 +152,5 @@ a {
 }
 .hidden {
   opacity: 0;
-}
-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-header h2 {
-  font-size: 2rem;
-  line-height: 0;
-}
-header .description {
-  max-width: 850px;
-  text-align: center;
-}
-header .description h3 {
-  font-weight: 400;
-  margin-bottom: 0;
-  margin-top: 1rem;
 }
 </style>
