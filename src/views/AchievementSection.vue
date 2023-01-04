@@ -21,7 +21,7 @@
         :index="i"
         :degSpanMobile="8"
         :xSpanMobile="8"
-        :degSpanTablet="8"
+        :degSpanTablet="16"
         :xSpanTablet="30"
         :degSpanDesktop="16"
         :xSpanDesktop="80"
@@ -45,7 +45,6 @@ import AchievementCard from "../components/AchievementCard.vue";
 import transX from "../composables/getTranslationX"
 import transY from "../composables/getTranslationY"
 import rot from "../composables/getRotation"
-
 
 export default {
   components: {

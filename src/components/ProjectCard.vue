@@ -40,10 +40,10 @@ export default {
   ],
   data() {
     return {
-      degSpanMobile: 8,
-      degSpanTablet: 12,
-      xSpanMobile: 10,
-      xSpanTablet: 20,
+      degSpanMobile: 4,
+      degSpanTablet: 16,
+      xSpanMobile: 4,
+      xSpanTablet: 30,
     }
   },
   computed: {
@@ -84,13 +84,20 @@ export default {
   flex-direction: column;
   height: 400px;
   width: 300px;
-  min-width: 250px;
   padding: 1.5rem;
   transition: 0.2s;
-
   border-radius: 16px;
   background: #17141d;
   box-shadow: -1rem 0 2.5rem #000;
+}
+@media (max-width: 700px) {
+  .card {
+    height: 400px;
+    width: 250px;
+  }
+  .card h2, .card p {
+    margin: 10px 0;
+  }
 }
 .skills {
   display: flex;
@@ -108,5 +115,19 @@ ion-icon {
   color: white;
   font-size: 2rem;
   margin: 0.5rem;
+}
+@media (max-width: 770px) {
+  .card {
+    position: absolute;
+    transform: translate(v-bind(translationX)) rotate(v-bind(rotation));
+    transition: transform 200ms;
+    box-shadow: -.35rem 0 1.5rem #000
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    box-shadow: -.3rem .2rem #000
+  }
 }
 </style>
