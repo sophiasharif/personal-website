@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import ProjectSection from "../views/ProjectSection";
 import SkillSection from "../views/SkillSection";
 import AchievementSection from "../views/AchievementSection";
+import AboutMe from "../views/AboutMe";
+
 
 const routes = [
   {
@@ -22,6 +24,11 @@ const routes = [
     path: "/achievements",
     name: "Achievements",
     component: AchievementSection,
+  },
+  {
+    path: "/about-me",
+    name: "AboutMe",
+    component: AboutMe,
   },
 ];
 

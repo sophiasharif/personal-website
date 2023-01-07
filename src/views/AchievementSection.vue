@@ -109,13 +109,10 @@ export default {
   methods: {
     handleForward() {
       this.achievements.unshift(this.achievements.pop());
-      console.log(this.achievements);
     },
     handleBackward() {
       const temp = this.achievements.shift()
-      console.log(this.achievements)
       this.achievements.push(temp)
-      // this.achievements.append(temp)
     },
     handleClick() {
       if (this.mqTablet.matches) {

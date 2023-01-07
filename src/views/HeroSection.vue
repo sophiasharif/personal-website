@@ -85,12 +85,16 @@ export default {
     }
 
     function revealGrid() {
+      let startingSquare = (columns.value * rows.value) / 2;
+      if (rows.value % 2 == 0) {
+        startingSquare += rows.value / 2;
+      }
       anime({
         targets: ".tile",
         opacity: 1,
         delay: anime.stagger(50, {
           grid: [columns.value, rows.value],
-          from: (columns.value * rows.value) / 2,
+          from: startingSquare,
         }),
       });
     }
@@ -100,7 +104,7 @@ export default {
       timeline.add({
         targets: ".tile",
         opacity: 1,
-        delay: anime.stagger(50, {
+        delay: anime.stagger(35, {
           grid: [columns.value, rows.value],
           from: (columns.value * rows.value) / 2,
         }),
@@ -108,7 +112,7 @@ export default {
       timeline.add({
         targets: ".tile",
         opacity: 0,
-        delay: anime.stagger(50, {
+        delay: anime.stagger(35, {
           grid: [columns.value, rows.value],
           from: (columns.value * rows.value) / 2,
         }),

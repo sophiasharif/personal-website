@@ -19,10 +19,10 @@
     <router-link to="/achievements">
       <button @click="handleRouteChange">Achievements</button>
     </router-link>
-    <router-link to="#">
+    <!-- <router-link to="#">
       <button @click="handleRouteChange">Blog</button>
-    </router-link>
-    <router-link to="#">
+    </router-link> -->
+    <router-link to="/about-me">
       <button @click="handleRouteChange">About Me</button>
     </router-link>
   </nav>

@@ -1,104 +1,133 @@
 <template>
-  <div class="grid">
-    <HighlightCard class="math">
-      <header class="math-coursework">Math Courses</header>
-      <div class="math-grid gradient-background">
-         <div class="col">
-          <ClassCard className="Discrete Structures" />
-          <ClassCard className="Differential Equations" />
-          <ClassCard className="Probability and Combinatorics" />
-          <ClassCard className="Integration and Infinite Series" />
-        </div>
-        <div class="col">
-          <ClassCard
-            className="Differential Multivariable Calculus (Honors)"
-            :scale="2"
-          />
-          <ClassCard
-            className="Integral Multivariable Calculus (Honors)"
-            :scale="3"
-          />
-          <ClassCard className="Number Theory" :scale="3" />
-          <ClassCard className="Differential and Integral Calculus" />
-        </div>
+  <div class="wrapper">
+    <header>
+      <h2>Math Papers</h2>
+      <div class="description" >
+        <h3 v-if="!mqTablet.matches">
+          These are some papers I've written for my math courses. Hover over the cards to see more information and get a link to the paper!
+        </h3>
+        <h3 v-else>Tap the cards to navigate!</h3>
       </div>
-    </HighlightCard>
-    <HighlightCard class="cs">
-      <header class="cs-coursework">CS Courses</header>
-      <div class="cs-grid gradient-background">
-        <div class="col">
-        <ClassCard className="Data Structures and Algorithms" />
-        <ClassCard className="Computer Organization" />
-        <ClassCard className="Software Construction Lab" />
-        <ClassCard className="Algorithms and Complexity" />
-      </div>
-      </div>
-    </HighlightCard>
+    </header>
+    <div class="card-list">
+      <MathProjectCard
+        class="card"
+        v-for="(project, index) in projects"
+        :key="project.title"
+        :date="project.date"
+        :title="project.title"
+        :description="project.description"
+        :demoLink="project.demoLink"
+        :index="index"
+        :nCards="projects.length"
+        :clicked="clicked"
+        @click="handleClick"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import ClassCard from "../components/ClassCard.vue";
-import HighlightCard from "../components/HighlightCard.vue";
+import MathProjectCard from "../components/MathProjectCard.vue";
+
 export default {
-  components: { ClassCard, HighlightCard },
+  components: { MathProjectCard },
+  computed: {
+    mqMobile() {
+      return window.matchMedia("(max-width: 480px)");
+    },
+    mqTablet() {
+      return window.matchMedia("(max-width: 770px)");
+    },
+  },
+  data() {
+    return {
+      clicked: false,
+      projects: [
+        {
+          date: "October 9, 2022",
+          title: "Linear Maps, Eigenvectors, and Eigenvalues",
+          description:
+            "This report explores the geometry of 2D linear maps and how to interpret their eigenvectors and eigenvalues.",
+          demoLink: "https://github.com/sophiasharif/honors-multivariable-calculus/blob/main/Report1.pdf",
+        },
+        {
+          date: "November 11, 2022",
+          title: "Polar Limits, ε-δ Definition of Limits",
+          description:
+            "An investigation of how polar coords can calculate limits, including an ε-δ proof of the polar method and an interesting case study of when polar limits fail.",
+          demoLink: "https://github.com/sophiasharif/honors-multivariable-calculus/blob/main/Report2.pdf",
+        },
+        {
+          date: "November 22, 2022",
+          title: "Curvature and the Frenet Frame",
+          description: "This report studies the calculus of vector-valued functions, the Frenet Frame and its properties, and different formulas for curvature.",
+          demoLink: "https://github.com/sophiasharif/honors-multivariable-calculus/blob/main/Report3.pdf"
+        },
+        {
+          date: "December 6, 2022",
+          title: "LaGrange Multipliers and Tolerance Intervals",
+          description:
+            "This report uses LaGrange multipliers to solve a real-world problem by optimizing the dimensions of a can.",
+          demoLink: "https://github.com/sophiasharif/honors-multivariable-calculus/blob/main/Report4.pdf",
+        },
+      ],
+    };
+  },
+  methods: {
+    handleClick() {
+      this.projects.unshift(this.projects.pop());
+    },
+  },
 };
 </script>
 
 <style scoped>
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 3px;
-  padding: 3px;
-  max-width: 1100px;
-}
-.gradient-background {
-  background: linear-gradient(to right, red, blue, red);
-  background-size: 200%;
-  animation: background-pan 5s ease infinite;
-}
-header {
-  background: #f18805;
-  margin: 0 1rem;
-  padding: 7px;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  font-weight: 800;
-  font-size: 20x;
-  display: flex;
-  justify-content: center;
-}
-.col {
+.wrapper {
   display: flex;
   flex-direction: column;
-  gap: 1.5px;
-  min-height: 430px;
+  width: 95%;
+  max-width: 1000px;
+  margin: 2rem;
+  gap: 2rem;
 }
-
-/* gradient animation */
-@keyframes background-pan {
-  from {
-    background-position: 0% center;
-  }
-  to {
-    background-position: -200% center;
-  }
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
-/* math courses */
-.math {
-  grid-column-start: 1;
-  grid-column-end: 3;
+header h2 {
+  font-size: 2rem;
+  margin-top: 0;
 }
-.math-grid {
+header h3 {
+  margin: 0;
+}
+header .description {
+  width: 100%;
+  max-width: 750px;
+  margin: 0 1rem;
+  text-align: center;
+}
+header .description h3 {
+  font-weight: 400;
+}
+.card-list {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5px;
-  padding: 1.5px;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
+  gap: 10px;
 }
-/* cs courses */
-.cs-grid {
-  padding: 1.5px;
+@media (max-width: 770px) {
+  .card-list {
+    grid-template-columns: 100%;
+    height: 300px;
+    margin-top: 2rem;
+    position: relative;
+    margin-bottom: 50px;
+  }
+  .wrapper {
+    align-items: center;
+  }
 }
 </style>

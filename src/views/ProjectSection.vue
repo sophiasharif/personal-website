@@ -134,7 +134,6 @@ header .description h3 {
   display: flex;
   justify-content: center;
   height: 400px;
-  width: 350px;
 }
 /* hover animation for desktop */
 @media (min-width: 770px) {
