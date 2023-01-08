@@ -13,8 +13,8 @@
     <router-link @click="handleRouteChange" to="/projects">
       <button>Projects</button>
     </router-link>
-    <router-link to="/skills">
-      <button @click="handleRouteChange">Skills + Coursework</button>
+    <router-link to="/math-papers">
+      <button @click="handleRouteChange">Math Papers</button>
     </router-link>
     <router-link to="/achievements">
       <button @click="handleRouteChange">Achievements</button>

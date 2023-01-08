@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import ProjectSection from "../views/ProjectSection";
-import SkillSection from "../views/SkillSection";
+import MathProjects from "../views/MathProjects";
 import AchievementSection from "../views/AchievementSection";
 import AboutMe from "../views/AboutMe";
 
@@ -16,9 +16,9 @@ const routes = [
     component: ProjectSection,
   },
   {
-    path: "/skills",
-    name: "Skills",
-    component: SkillSection,
+    path: "/math-papers",
+    name: "MathProjects",
+    component: MathProjects,
   },
   {
     path: "/achievements",

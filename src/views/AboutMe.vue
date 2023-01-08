@@ -1,27 +1,25 @@
 <template>
   <div class="container">
     <div class="about-me">
-      <div class="wrapper">
-        <div class="text">
-          <h1>👋<br /><strong>Hello, I’m Sophia!</strong></h1>
-          <div class="quick-facts">
-            <p>Here's a bit about me:</p>
-            <ol>
-              <li>I grew up in the Bay Area.</li>
-              <li>I'm half Russian and half Iranian.</li>
-              <ul>
-                <li>I lived in Moscow for 3 years.</li>
-              </ul>
-              <li>I used to be a competitive beach volleyball player.</li>
-              <ul>
-                <li>I was on the national team in 2019.</li>
-                <li>I was ranked #1 in Northern California.</li>
-              </ul>
-              <li>I learned how to code in high school.</li>
-              <li>I earned a world record in Google Snake.</li>
-              <li>I'm now studying math & CS at UCLA.</li>
-            </ol>
-          </div>
+      <div class="text">
+        <h1>👋<br /><strong>Hello, I’m Sophia!</strong></h1>
+        <div class="quick-facts">
+          <p>Here's a bit about me:</p>
+          <ol>
+            <li>I grew up in the Bay Area.</li>
+            <li>I'm half Russian and half Iranian.</li>
+            <ul>
+              <li>I lived in Moscow for 3 years.</li>
+            </ul>
+            <li>I used to be a competitive beach volleyball player.</li>
+            <ul>
+              <li>I was on the national team in 2019.</li>
+              <li>I was ranked #1 in Northern California.</li>
+            </ul>
+            <li>I learned how to code in high school.</li>
+            <li>I earned a world record in Google Snake.</li>
+            <li>I'm now studying math & CS at UCLA.</li>
+          </ol>
         </div>
       </div>
     </div>
@@ -32,32 +30,29 @@
 </template>
 
 <style scoped>
-h1 {
-  font-size: 2rem;
-  margin-top: 0;
-  color: white;
-}
-
 .container {
-  padding: 2rem 3%;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 0 1rem;
 }
-
 .about-me {
   display: flex;
-  margin: 1rem;
   justify-content: center;
   align-items: center;
 }
-
-.wrapper {
-  display: block;
-}
-
 .text {
   text-align: left;
   display: inline-block;
+  max-width: 480px;
 }
-
+h1 {
+  font-size: 1.25rem;
+  margin-top: 0;
+}
+.quick-facts {
+  font-size: .8rem;
+}
 .profile-pic {
   display: flex;
   margin: 1rem;
@@ -66,28 +61,21 @@ h1 {
 }
 
 img {
-  display: block;
-  border-radius: 8%;
-  width: 100%;
-  max-width: 500px;
-  margin: auto;
-}
-
-@media (min-width: 375px) {
-  h1 {
-    font-size: 2.25rem;
-  }
+  display: none;
 }
 
 @media (min-width: 400px) {
   h1 {
-    font-size: 2.5rem;
+    font-size: 1.75rem;
+  }
+  .quick-facts {
+    font-size: 1rem;
   }
 }
 
 @media (min-width: 550px) {
   h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   .quick-facts {
     font-size: 1.15rem;
@@ -95,6 +83,19 @@ img {
 }
 
 @media (min-width: 1000px) {
+    h1 {
+    font-size: 2rem;
+  }
+  .quick-facts {
+    font-size: 1rem;
+  }
+  img {
+    display: block;
+  border-radius: 8%;
+  width: 100%;
+  max-width: 480px;
+  margin: auto;
+}
   .about-me,
   .profile-pic {
     flex: 1;
@@ -108,8 +109,14 @@ img {
     max-width: 1440px;
     padding: 2rem 3%;
   }
-  img {
-    max-width: 600px;
+}
+
+@media (min-width: 1100px) {
+      h1 {
+    font-size: 2.25rem;
+  }
+  .quick-facts {
+    font-size: 1.15rem;
   }
 }
 </style>
