@@ -5,7 +5,7 @@
       <h2>{{ title }}</h2>
       <section class="skills">
         <div class="skill" v-for="skill in skills" :key="skill">
-          {{ skill }}
+          <p>{{ skill }}</p>
         </div>
       </section>
       <p>{{ description }}</p>
@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import transX from '../composables/getTranslationX'
-import rot from '../composables/getRotation'
+import transX from "../composables/getTranslationX";
+import rot from "../composables/getRotation";
 
 export default {
   props: [
@@ -36,7 +36,7 @@ export default {
     "youtubeLink",
     "githubLink",
     "index",
-    "nCards"
+    "nCards",
   ],
   data() {
     return {
@@ -44,7 +44,7 @@ export default {
       degSpanTablet: 16,
       xSpanMobile: 4,
       xSpanTablet: 30,
-    }
+    };
   },
   computed: {
     mqMobile() {
@@ -90,15 +90,6 @@ export default {
   background: #17141d;
   box-shadow: -1rem 0 2.5rem #000;
 }
-@media (max-width: 700px) {
-  .card {
-    height: 400px;
-    width: 250px;
-  }
-  .card h2, .card p {
-    margin: 10px 0;
-  }
-}
 .skills {
   display: flex;
   flex-wrap: wrap;
@@ -106,28 +97,58 @@ export default {
 .skill {
   background: #f18805;
   margin: 5px;
-  padding: 3px 8px;
+  padding: 8px;
   border-radius: 10px;
   font-weight: 800;
   font-size: 16px;
+}
+.skill p {
+  margin: 0;
 }
 ion-icon {
   color: white;
   font-size: 2rem;
   margin: 0.5rem;
 }
-@media (max-width: 770px) {
+
+@media (max-width: 1050px) {
   .card {
     position: absolute;
     transform: translate(v-bind(translationX)) rotate(v-bind(rotation));
     transition: transform 200ms;
-    box-shadow: -.35rem 0 1.5rem #000
+    box-shadow: -0.35rem 0 1.5rem #000;
   }
 }
-
+@media (max-width: 700px) {
+  .card {
+    height: 400px;
+    width: 250px;
+  }
+  .card p {
+    font-size: .9rem;
+  }
+  .card h2 {
+    font-size: 1.5rem;
+  }
+}
 @media (max-width: 480px) {
   .card {
-    box-shadow: -.3rem .2rem #000
+    height: 325px;
+    width: 200px;
+    box-shadow: -0.2rem 0.4rem .2rem #000;
+  }
+  .card p {
+    font-size: 0.75rem;
+  }
+  .card h2 {
+    font-size: 1rem;
+  }
+  .skill {
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: 800;
+    font-size: 16px;
   }
 }
 </style>
