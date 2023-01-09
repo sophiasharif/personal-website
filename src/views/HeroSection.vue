@@ -21,9 +21,10 @@ import { onMounted } from "@vue/runtime-core";
 
 export default {
   props: ["routerShown"],
-  setup(props) {
+  setup(props, {emit}) {
     // set up grid
     const tileWidth = 60;
+    const stagger = 50;
     let columns = ref(0),
       rows = ref(0);
 
@@ -32,15 +33,38 @@ export default {
       columns.value = Math.floor(window.innerWidth / tileWidth);
       rows.value = Math.floor(window.innerHeight / tileWidth);
     }
-    onMounted(() => calculateGrid());
+
+    // calculate opacity timing
+    function calculateOpacityTiming() {
+      const width = window.innerWidth
+      let opacityTiming = 1.3;
+      if (width < 100) {
+        opacityTiming = 1.1
+      } 
+      if (width < 1000) {
+        opacityTiming = .9
+      } 
+      emit('setOpacityTiming', opacityTiming)
+    }
+
+    onMounted(() => {
+      calculateGrid();
+      calculateOpacityTiming()
+    });
 
     // adjust for window resizes
     let currentColor = "#191919";
     window.onresize = () => {
       calculateGrid();
+      calculateOpacityTiming()
       document
         .querySelectorAll(".tile") // set all new tiles to the same color
-        .forEach((tile) => (tile.style.backgroundColor = currentColor));
+        .forEach((tile) => {
+          tile.style.backgroundColor = currentColor;
+          if (props.routerShown) {
+            tile.style.opacity = 0;
+          }
+        });
     };
 
     // color generator
@@ -66,58 +90,68 @@ export default {
       anime({
         targets: ".tile",
         backgroundColor: getColor(),
-        delay: anime.stagger(50, {
+        delay: anime.stagger(stagger, {
           grid: [columns.value, rows.value],
           from: index - 1,
         }),
       });
     }
 
+    function getIndex() {
+      const row = Math.floor(rows.value / 2);
+      const col = Math.floor(columns.value / 2);
+      return columns.value * row + col;
+    }
+
     function dissolveGrid() {
       anime({
         targets: ".tile",
         opacity: 0,
-        delay: anime.stagger(50, {
+        delay: anime.stagger(stagger, {
           grid: [columns.value, rows.value],
-          from: (columns.value * rows.value) / 2,
+          from: getIndex(),
         }),
       });
     }
 
     function revealGrid() {
-      let startingSquare = (columns.value * rows.value) / 2;
-      if (rows.value % 2 == 0) {
-        startingSquare += rows.value / 2;
-      }
       anime({
         targets: ".tile",
         opacity: 1,
-        delay: anime.stagger(50, {
+        delay: anime.stagger(stagger, {
           grid: [columns.value, rows.value],
-          from: startingSquare,
+          from: getIndex(),
         }),
       });
     }
 
     function transitionGrid() {
+      document
+        .querySelectorAll(".tile") // set all new tiles to the same color
+        .forEach((tile) => {
+          tile.style.backgroundColor = "#191919";
+        });
       let timeline = anime.timeline();
       timeline.add({
         targets: ".tile",
         opacity: 1,
-        delay: anime.stagger(35, {
+        delay: anime.stagger(stagger, {
           grid: [columns.value, rows.value],
-          from: (columns.value * rows.value) / 2,
+          from: getIndex(),
         }),
-      })
-      timeline.add({
-        targets: ".tile",
-        opacity: 0,
-        delay: anime.stagger(35, {
-          grid: [columns.value, rows.value],
-          from: (columns.value * rows.value) / 2,
-        }),
-      }, "-=870")
-      timeline.play()
+      });
+      timeline.add(
+        {
+          targets: ".tile",
+          opacity: 0,
+          delay: anime.stagger(stagger, {
+            grid: [columns.value, rows.value],
+            from: getIndex(),
+          }),
+        },
+        "-=870"
+      );
+      timeline.play();
     }
 
     function getGridPointerEvents() {
@@ -135,7 +169,7 @@ export default {
       dissolveGrid,
       revealGrid,
       transitionGrid,
-      getGridPointerEvents,
+      getGridPointerEvents
     };
   },
 };

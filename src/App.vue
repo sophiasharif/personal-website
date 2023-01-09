@@ -5,25 +5,25 @@
     </Transition>
     
   </div>
-  <HeroSection :routerShown="routerShown" ref="grid" />
+  <HeroSection :routerShown="routerShown" ref="grid" @setOpacityTiming="setOpacityTiming"/>
   <nav>
     <router-link @click="revealGrid" to="/">
-      <button>Home</button>
+      <button>home</button>
     </router-link>
     <router-link @click="handleRouteChange" to="/projects">
-      <button>Projects</button>
+      <button>projects</button>
     </router-link>
     <router-link to="/math-papers">
-      <button @click="handleRouteChange">Math Papers</button>
+      <button @click="handleRouteChange">math papers</button>
     </router-link>
     <router-link to="/achievements">
-      <button @click="handleRouteChange">Achievements</button>
+      <button @click="handleRouteChange">achievements</button>
     </router-link>
     <!-- <router-link to="#">
       <button @click="handleRouteChange">Blog</button>
     </router-link> -->
     <router-link to="/about-me">
-      <button @click="handleRouteChange">About Me</button>
+      <button @click="handleRouteChange">about me</button>
     </router-link>
   </nav>
 </template>
@@ -40,8 +40,13 @@ export default {
     return {
       routerShown: false,
       test: "auto",
-      transition: "opacity 1.1s cubic-bezier(.86,-0.03,.75,.05)"
+      opacityTiming: 1.1
     };
+  },
+  computed: {
+    transition() {
+      return "opacity " + this.opacityTiming + "s cubic-bezier(.86,-0.03,.75,.05)"
+    }
   },
   methods: {
     dissolveGrid() {
@@ -71,6 +76,10 @@ export default {
         this.transitionGrid()
       }
     },
+    setOpacityTiming(value) {
+      console.log('opacity timing: ', value)
+      this.opacityTiming = value
+    }
   },
 };
 </script>
