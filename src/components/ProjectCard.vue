@@ -133,15 +133,15 @@ ion-icon {
 }
 @media (max-width: 480px) {
   .card {
-    height: 325px;
-    width: 200px;
+    height: 340px;
+    width: 230px;
     box-shadow: -0.2rem 0.4rem .2rem #000;
   }
   .card p {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
   }
   .card h2 {
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
   .skill {
     margin: 5px;

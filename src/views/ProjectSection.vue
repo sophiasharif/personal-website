@@ -98,9 +98,8 @@ export default {
   },
   methods: {
     handleClick() {
-      console.log("you click me");
-      this.projects.unshift(this.projects.pop());
-      console.log(this.projects);
+      if (window.innerWidth <= 1050)
+        this.projects.unshift(this.projects.pop());
     },
   },
 };
@@ -111,6 +110,9 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 header {
   display: flex;
@@ -119,6 +121,7 @@ header {
 }
 header h2 {
   font-size: 2rem;
+  margin-top: 0;
 }
 header h3 {
   margin: 0;
@@ -135,6 +138,7 @@ header #description h3 {
   display: flex;
   justify-content: center;
   height: 400px;
+  margin-bottom: 2rem;
 }
 /* hover animation for desktop */
 @media (min-width: 1050px) {

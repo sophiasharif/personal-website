@@ -10,43 +10,40 @@
     @setOpacityTiming="setOpacityTiming"
   />
   <nav class="desktop">
-    <router-link @click="revealGrid" to="/">
+    <router-link @click="handleRouteChange('Home')" to="/">
       <button>home</button>
     </router-link>
-    <router-link @click="handleRouteChange" to="/projects">
+    <router-link @click="handleRouteChange('Projects')" to="/projects">
       <button>projects</button>
     </router-link>
     <router-link to="/math-papers">
-      <button @click="handleRouteChange">math papers</button>
+      <button @click="handleRouteChange('MathProjects')">math papers</button>
     </router-link>
     <router-link to="/achievements">
-      <button @click="handleRouteChange">achievements</button>
+      <button @click="handleRouteChange('Achievements')">achievements</button>
     </router-link>
-    <!-- <router-link to="#">
-      <button @click="handleRouteChange">Blog</button>
-    </router-link> -->
     <router-link to="/about-me">
-      <button @click="handleRouteChange">about me</button>
+      <button @click="handleRouteChange('AboutMe')">about me</button>
     </router-link>
   </nav>
   <nav class="mobile">
     <ion-icon name="menu-outline" @click="toggleMenu"></ion-icon>
-    <div class="links" :class="{invisible: !menuToggled}">
-      <router-link @click="revealGrid" to="/">
+    <div class="links" :class="{ invisible: !menuToggled }">
+      <router-link @click="handleRouteChange('Home')" to="/">
         <button>home</button>
       </router-link>
-      <router-link @click="handleRouteChange" to="/projects">
+      <router-link @click="handleRouteChange('Projects')" to="/projects">
         <button>projects</button>
       </router-link>
       <router-link to="/math-papers">
-        <button @click="handleRouteChange">math papers</button>
+        <button @click="handleRouteChange('MathProjects')">math papers</button>
       </router-link>
       <router-link to="/achievements">
-        <button @click="handleRouteChange">achievements</button>
+        <button @click="handleRouteChange('Achievements')">achievements</button>
       </router-link>
       <router-link to="/about-me">
-      <button @click="handleRouteChange">about me</button>
-    </router-link>
+        <button @click="handleRouteChange('AboutMe')">about me</button>
+      </router-link>
     </div>
   </nav>
 </template>
@@ -64,7 +61,7 @@ export default {
       routerShown: false,
       test: "auto",
       opacityTiming: 1.1,
-      menuToggled: false
+      menuToggled: false,
     };
   },
   computed: {
@@ -76,16 +73,14 @@ export default {
   },
   methods: {
     dissolveGrid() {
-      this.transition = "opacity .4s cubic-bezier(.57,.08,.21,.26)";
-      this.routerShown = true;
       this.$refs.grid.dissolveGrid();
+      this.routerShown = true;
     },
     revealGrid() {
-      this.routerShown = false;
       this.$refs.grid.revealGrid();
+      this.routerShown = false;
     },
     transitionGrid() {
-      this.transition = "opacity 1.1s cubic-bezier(.86,-0.03,.75,.05)";
       this.$refs.grid.transitionGrid();
     },
     getRouterPointerEvents() {
@@ -95,22 +90,29 @@ export default {
         return "none";
       }
     },
-    handleRouteChange() {
-      if (!this.routerShown) {
+    handleRouteChange(newRoute) {
+      const currentRoute = this.$route.name;
+      if (newRoute == currentRoute) {
+        return;
+      }
+      if (currentRoute == "Home") {
+        this.shortTransition = true;
         this.dissolveGrid();
+        this.shortTransition = false;
+      } else if (newRoute == "Home") {
+        this.revealGrid();
+        return;
       } else {
         this.transitionGrid();
       }
       this.menuToggled = false;
     },
     setOpacityTiming(value) {
-      console.log("opacity timing: ", value);
       this.opacityTiming = value;
     },
     toggleMenu() {
-      this.menuToggled = !this.menuToggled
-      console.log(this.menuToggled)
-    }
+      this.menuToggled = !this.menuToggled;
+    },
   },
 };
 </script>
@@ -217,9 +219,9 @@ a {
     width: 150px;
     display: flex;
     flex-direction: column;
-    background: rgba(0,0,0,.8);
-    padding: .5rem;
-    border-radius: 5px;  
-    }
+    background: rgba(0, 0, 0, 0.8);
+    padding: 0.5rem;
+    border-radius: 5px;
+  }
 }
 </style>

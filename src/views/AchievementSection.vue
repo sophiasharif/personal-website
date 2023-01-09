@@ -137,6 +137,9 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 .buttons {
   display: flex;
