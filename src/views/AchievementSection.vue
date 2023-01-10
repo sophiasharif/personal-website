@@ -137,9 +137,6 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
 }
 .buttons {
   display: flex;
@@ -172,6 +169,7 @@ header .description h3 {
   display: grid;
   place-items: center;
   height: 450px;
+  outline: 5px solid red;
 }
 /* spread on hover -- only for larger screens  */
 @media (min-width: 770px) {

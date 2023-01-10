@@ -11,6 +11,14 @@
     <h1 class="name">sophia sharif</h1>
     <h2 class="subtitle">computer science student at ucla</h2>
     <p class="note">click a tile!</p>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/sophia-sharif/" target="_blank"
+        ><ion-icon name="logo-linkedin"></ion-icon
+      ></a>
+      <a href="https://github.com/sophiasharif" target="_blank">
+        <ion-icon name="logo-github"></ion-icon
+      ></a>
+    </div>
   </div>
 </template>
 
@@ -21,7 +29,7 @@ import { onMounted } from "@vue/runtime-core";
 
 export default {
   props: ["routerShown"],
-  setup(props, {emit}) {
+  setup(props, { emit }) {
     // set up grid
     const tileWidth = 60;
     const stagger = 50;
@@ -36,27 +44,27 @@ export default {
 
     // calculate opacity timing
     function calculateOpacityTiming() {
-      const width = window.innerWidth
+      const width = window.innerWidth;
       let opacityTiming = 1.3;
       if (width < 100) {
-        opacityTiming = 1.1
-      } 
+        opacityTiming = 1.1;
+      }
       if (width < 1000) {
-        opacityTiming = .9
-      } 
-      emit('setOpacityTiming', opacityTiming)
+        opacityTiming = 0.9;
+      }
+      emit("setOpacityTiming", opacityTiming);
     }
 
     onMounted(() => {
       calculateGrid();
-      calculateOpacityTiming()
+      calculateOpacityTiming();
     });
 
     // adjust for window resizes
     let currentColor = "#191919";
     window.onresize = () => {
       calculateGrid();
-      calculateOpacityTiming()
+      calculateOpacityTiming();
       document
         .querySelectorAll(".tile") // set all new tiles to the same color
         .forEach((tile) => {
@@ -169,7 +177,7 @@ export default {
       dissolveGrid,
       revealGrid,
       transitionGrid,
-      getGridPointerEvents
+      getGridPointerEvents,
     };
   },
 };
@@ -231,6 +239,19 @@ h2.subtitle {
 p.note {
   color: white;
   font-size: 20px;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  min-width: 90px;
+  width: 10%;
+  max-width: 150px;
+  margin-top: 15%;
+}
+
+ion-icon {
+  font-size: 2rem;
 }
 
 .tiles::after {

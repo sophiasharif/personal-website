@@ -20,6 +20,14 @@
             <li>I earned a world record in Google Snake.</li>
             <li>I'm now studying math & CS at UCLA.</li>
           </ol>
+          <div class="links">
+            <a href="https://www.linkedin.com/in/sophia-sharif/" target="_blank"
+              ><ion-icon name="logo-linkedin"></ion-icon
+            ></a>
+            <a href="https://github.com/sophiasharif" target="_blank">
+              <ion-icon name="logo-github"></ion-icon
+            ></a>
+          </div>
         </div>
       </div>
     </div>
@@ -51,7 +59,7 @@ h1 {
   margin-top: 0;
 }
 .quick-facts {
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 .profile-pic {
   display: flex;
@@ -62,6 +70,16 @@ h1 {
 
 img {
   display: none;
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+}
+
+ion-icon {
+  font-size: 2rem;
+  margin: 0 1rem;
 }
 
 @media (min-width: 400px) {
@@ -83,7 +101,7 @@ img {
 }
 
 @media (min-width: 1000px) {
-    h1 {
+  h1 {
     font-size: 2rem;
   }
   .quick-facts {
@@ -91,11 +109,11 @@ img {
   }
   img {
     display: block;
-  border-radius: 8%;
-  width: 100%;
-  max-width: 480px;
-  margin: auto;
-}
+    border-radius: 8%;
+    width: 100%;
+    max-width: 480px;
+    margin: auto;
+  }
   .about-me,
   .profile-pic {
     flex: 1;
@@ -107,12 +125,12 @@ img {
     justify-content: center;
     min-height: 40vh;
     max-width: 1440px;
-    padding: 2rem 3%;
+    padding: 1rem 2rem;
   }
 }
 
 @media (min-width: 1100px) {
-      h1 {
+  h1 {
     font-size: 2.25rem;
   }
   .quick-facts {
