@@ -83,7 +83,7 @@ export default {
           date: "March 2019 - March 2020",
           title: "USA Beach Volleyball National Team",
           content:
-            "I was one of 24 selected for the 2019 USA national high-performance team. I was also the #1 beach volleyball player in Northern California for 2 years.",
+            "I was one of 24 selected for the 2019 USA national high-performance team.",
         },
         {
           date: "December 2018 - March 2020",
@@ -169,7 +169,6 @@ header .description h3 {
   display: grid;
   place-items: center;
   height: 450px;
-  outline: 5px solid red;
 }
 /* spread on hover -- only for larger screens  */
 @media (min-width: 770px) {

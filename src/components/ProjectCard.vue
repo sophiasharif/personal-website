@@ -97,7 +97,7 @@ export default {
 .skill {
   background: #f18805;
   margin: 5px;
-  padding: 8px;
+  padding: 6px 8px;
   border-radius: 10px;
   font-weight: 800;
   font-size: 16px;

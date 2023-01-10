@@ -195,23 +195,22 @@ export default {
   top: 0;
   right: 0;
 }
-
 .tile {
   box-sizing: border-box;
   background-color: #191919;
   margin: 0.5px;
 }
-
 .tile:before {
   content: "";
   color: black;
 }
-
 .introduction {
   color: white;
   margin: 0px;
   width: 50vw;
-  transition: opacity 0.5s ease;
+  opacity: 1;
+  transition: opacity 1.3s ease;
+  
 
   /* positioning */
   position: absolute;
@@ -223,6 +222,7 @@ export default {
 
 .invisible {
   opacity: 0;
+  
 }
 
 h1.name {

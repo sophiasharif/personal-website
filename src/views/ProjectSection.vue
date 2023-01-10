@@ -2,11 +2,19 @@
   <div class="wrapper">
     <header>
       <h2>Projects</h2>
-      <div id="description" >
+      <div id="description">
         <h3 v-if="!mqTablet.matches">
-          Here are some of the projects I'm proud of. Click on the link icon to
-          see a live demo or on the YouTube icon to see me walk through the
-          project!
+          For a more technical overview, see
+          <a
+            href="https://github.com/sophiasharif/resume/blob/main/Resume-June-2022.docx.pdf"
+            target="_blank"
+            >my resume</a
+          >
+          or
+          <a href="https://www.linkedin.com/in/sophia-sharif/" target="_blank"
+            >my LinkedIn</a
+          >. Click on the link icon to see a live demo or the GitHub icon to see
+          the source code!
         </h3>
         <h3 v-else>Tap the cards to navigate!</h3>
       </div>
@@ -54,58 +62,51 @@ export default {
           skills: ["Vue", "Firebase", "JavaScript", "CSS"],
           description:
             "I took this as an opportunity to get creative with CSS and strengthen my Firebase skills!",
-          demoLink: "https://www.youtube.com",
-          youtubeLink: "youtube.com",
-          githubLink: "github.com",
-          class: "card",
+          demoLink: "sophiasharif.com",
+          githubLink: "https://github.com/sophiasharif/personal-website",
         },
         {
           date: "May 20, 2021",
           title: "LA Hacks",
           skills: ["React", "JavaScript", "Sass"],
           description:
-            "I'm on the Tech team of the largest hackathon in Southern California! I worked with the Design team and created several components throughout the website.",
+            "I'm on the rech team of the largest hackathon in Southern California! I worked with the Design team and created several components throughout the website.",
           demoLink: "https://lahacks.com/",
-          walkthroughLink: "youtube.com",
-          githubLink: "github.com",
-          class: "card",
-          index: "2",
+          githubLink: "https://github.com/LAHacks/govappsfrontend",
         },
         {
           date: "May 20, 2021",
-          title: "Poll Data String Processor",
+          title: "Terminal Minigame",
           skills: ["C++"],
-          description: "I did this project at part of my CS31 class.",
-          demoLink: "sophiasharif.com",
-          walkthroughLink: "youtube.com",
-          githubLink: "github.com",
-          class: "card",
-          index: "3",
+          description:
+            "This is a terminal-based game I created for my CS31 class. It includes an AI that can consistently win the game.",
+          githubLink:
+            "https://github.com/sophiasharif/cs-31/tree/main/project-7",
         },
         {
           date: "May 20, 2021",
           title: "Personal Website version 1",
           skills: ["Python", "Flask", "Bootstrap"],
           description:
-            "I focused on the back-end on the first version of this website. I used Flask for the backend and Bootstrap for the front end.",
-          demoLink: "sophiasharif.com",
-          walkthroughLink: "youtube.com",
-          class: "card",
-          index: "4",
+            "I focused on the backend on the first version of this website. I used Flask for the backend and Bootstrap for the front end.",
+          githubLink: "https://github.com/sophiasharif/personal-website-old",
         },
       ],
     };
   },
   methods: {
     handleClick() {
-      if (window.innerWidth <= 1050)
-        this.projects.unshift(this.projects.pop());
+      if (window.innerWidth <= 1050) this.projects.unshift(this.projects.pop());
     },
   },
 };
 </script>
 
 <style scoped>
+a {
+  text-decoration: underline;
+  color: paleturquoise;
+}
 .wrapper {
   display: flex;
   flex-direction: column;
