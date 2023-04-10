@@ -93,7 +93,6 @@ export default {
     handleRouteChange(newRoute) {
       const currentRoute = this.$route.name;
       if (!this.routerShown && !(currentRoute == 'Home' && newRoute == 'Home')) {
-        this.shortTransition = true;
         this.dissolveGrid();
       } else if (newRoute == currentRoute) {
         return;

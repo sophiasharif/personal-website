@@ -77,7 +77,7 @@ export default {
 <style scoped>
 .card-container {
   width: 100%;
-  aspect-ratio: 3/4;
+  aspect-ratio: 4/3;
   background: transparent;
   text-align: center;
   perspective: 1000px;

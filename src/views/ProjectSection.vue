@@ -6,7 +6,7 @@
         <h3 v-if="!mqTablet.matches">
           For a more technical overview, see
           <a
-            href="https://github.com/sophiasharif/resume/blob/main/Resume-June-2022.docx.pdf"
+            href="https://github.com/sophiasharif/resume/blob/main/Sophia-Sharif-public-resume.pdf"
             target="_blank"
             >my resume</a
           >
@@ -57,39 +57,38 @@ export default {
     return {
       projects: [
         {
-          date: "May 20, 2021",
-          title: "Personal Website",
-          skills: ["Vue", "Firebase", "JavaScript", "CSS"],
+          date: "March 2023",
+          title: "UCLA Major Explorer",
+          skills: ["Python", "Selenium", "D3.js"],
           description:
-            "I took this as an opportunity to get creative with CSS and strengthen my Firebase skills!",
-          demoLink: "sophiasharif.com",
-          githubLink: "https://github.com/sophiasharif/personal-website",
+            "To help students plan their schedules, I used Selenium to web scrape major requirements and course prerequisites from the UCLA course schedule and created a class dependency DAG visualization with D3.",
+          githubLink: "https://github.com/sophiasharif/ucla-course-webscraping",
         },
         {
-          date: "May 20, 2021",
-          title: "LA Hacks",
-          skills: ["React", "JavaScript", "Sass"],
-          description:
-            "I'm on the rech team of the largest hackathon in Southern California! I worked with the Design team and created several components throughout the website.",
-          demoLink: "https://lahacks.com/",
-          githubLink: "https://github.com/LAHacks/govappsfrontend",
-        },
-        {
-          date: "May 20, 2021",
-          title: "Terminal Minigame",
+          date: "February 2023",
+          title: "Mario Party Clone",
           skills: ["C++"],
           description:
-            "This is a terminal-based game I created for my CS31 class. It includes an AI that can consistently win the game.",
+            "Peach Party is a two-player game that manages 100+ actors every tick with 1000+ lines of code. I used a lot of inheritance, polymorphism, abstract base classes, and dynamic allocation.",
           githubLink:
-            "https://github.com/sophiasharif/cs-31/tree/main/project-7",
+            "https://github.com/sophiasharif/mario-party-clone",
         },
         {
-          date: "May 20, 2021",
-          title: "Personal Website version 1",
-          skills: ["Python", "Flask", "Bootstrap"],
+          date: "March 2023",
+          title: "Pnetphlix",
+          skills: ["C++"],
           description:
-            "I focused on the backend on the first version of this website. I used Flask for the backend and Bootstrap for the front end.",
-          githubLink: "https://github.com/sophiasharif/personal-website-old",
+            "This project parses a text file and loads a database of 100,000 users and 20,000 movies in under a second and recommends movies based on previously watched content.",
+          githubLink: "https://github.com/sophiasharif/pnetphlix",
+        },
+        {
+          date: "January 2023",
+          title: "Personal Blog",
+          skills: ["Vue", "Firebase", "JavaScript", "Quill", "HTML/CSS"],
+          description:
+            "My blog's features include user authentication, photo uploading and storage, CRUD operations, a rich text editor, and a smart mosaic photo gallery!",
+          demoLink: "https://blog.sophiasharif.com/",
+          githubLink: "https://github.com/sophiasharif/blog",
         },
       ],
     };

@@ -9,7 +9,7 @@
   </div>
   <div class="introduction" :class="{ invisible: routerShown }">
     <h1 class="name">sophia sharif</h1>
-    <h2 class="subtitle">computer science student at ucla</h2>
+    <h2 class="subtitle">math & cs student at ucla</h2>
     <p class="note">click a tile!</p>
     <div class="links">
       <a href="https://www.linkedin.com/in/sophia-sharif/" target="_blank"

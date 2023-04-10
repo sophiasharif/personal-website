@@ -55,7 +55,7 @@ export default {
           date: "November 11, 2022",
           title: "Polar Limits, ε-δ Definition of Limits",
           description:
-            "An investigation of how polar coords can calculate limits, including an ε-δ proof of the polar method and an interesting case study of when polar limits fail.",
+            "An investigation of how polar coords can calculate limits, including an ε-δ proof of the polar method and an case study of when polar limits fail.",
           demoLink: "https://github.com/sophiasharif/honors-multivariable-calculus/blob/main/Report2.pdf",
         },
         {
@@ -66,10 +66,24 @@ export default {
         },
         {
           date: "December 6, 2022",
-          title: "LaGrange Multipliers and Tolerance Intervals",
+          title: " Multipliers and Tolerance Intervals",
           description:
             "This report uses LaGrange multipliers to solve a real-world problem by optimizing the dimensions of a can.",
           demoLink: "https://github.com/sophiasharif/honors-multivariable-calculus/blob/main/Report4.pdf",
+        },
+        {
+          date: "January 20, 2023",
+          title: "Improper Integrals & The Cauchy Principal Value",
+          description:
+            "This report explores how to calculate improper integrals with unbounded functions, unbounded support, or both.",
+          demoLink: "https://github.com/sophiasharif/honors-multivariable-calculus/blob/main/Report5.pdf",
+        },
+        {
+          date: "Febuary 21, 2023",
+          title: "Identifying & Describing Manifolds",
+          description:
+            "This report studies how to identify k-dimensional manifolds and how the implicit function theorem generalizes the notion of manifolds.",
+          demoLink: "https://github.com/sophiasharif/honors-multivariable-calculus/blob/main/Report6.pdf",
         },
       ],
     };
@@ -89,7 +103,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 95%;
-  max-width: 1000px;
+  max-width: 900px;
   margin: 2rem;
   gap: 2rem;
 }
@@ -116,9 +130,9 @@ header .description h3 {
 }
 .card-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   place-items: center;
-  gap: 10px;
+  gap: 15px;
 }
 @media (max-width: 770px) {
   .card-list {
