@@ -65,21 +65,12 @@ export default {
           githubLink: "https://github.com/sophiasharif/ucla-course-webscraping",
         },
         {
-          date: "February 2023",
-          title: "Mario Party Clone",
-          skills: ["C++"],
+          date: "June 2023",
+          title: "Random Byte Generator",
+          skills: ["C", "Makefile", "Shell", "x86-64"],
           description:
-            "Peach Party is a two-player game that manages 100+ actors every tick with 1000+ lines of code. I used a lot of inheritance, polymorphism, abstract base classes, and dynamic allocation.",
-          githubLink:
-            "https://github.com/sophiasharif/mario-party-clone",
-        },
-        {
-          date: "March 2023",
-          title: "Pnetphlix",
-          skills: ["C++"],
-          description:
-            "This project parses a text file and loads a database of 100,000 users and 20,000 movies in under a second and recommends movies based on previously watched content.",
-          githubLink: "https://github.com/sophiasharif/pnetphlix",
+            "Used inline assembly for CPU capability checks and hardware RNG. Manually managed memory, optimized output mechanisms, debugged with valgrind and a custom make check program.",
+          githubLink: "https://github.com/sophiasharif/CS35L/tree/main/lab-5",
         },
         {
           date: "January 2023",
@@ -89,6 +80,14 @@ export default {
             "My blog's features include user authentication, photo uploading and storage, CRUD operations, a rich text editor, and a smart mosaic photo gallery!",
           demoLink: "https://blog.sophiasharif.com/",
           githubLink: "https://github.com/sophiasharif/blog",
+        },
+        {
+          date: "July 2023",
+          title: "View Counter",
+          skills: ["JavaScript", "Express.js", "Google Sheets API"],
+          description:
+            "This project tracks page views by embedding an invisible pixel. Each invisible pixel request to the server increments the view count for the corresponding page on a Google Sheet!",
+          githubLink: "https://github.com/sophiasharif/view-counter",
         },
       ],
     };

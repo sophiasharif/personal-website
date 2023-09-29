@@ -6,9 +6,7 @@
         <h3 v-if="!mqTablet.matches">
           Hover over the deck to preview or click the arrows to navigate!
         </h3>
-        <h3 v-else>
-          Tap the cards to navigate!
-        </h3>
+        <h3 v-else>Tap the cards to navigate!</h3>
       </div>
     </header>
     <div class="achievement-deck">
@@ -31,7 +29,10 @@
       />
     </div>
     <div class="buttons" v-if="!mqTablet.matches">
-      <ion-icon name="arrow-back-circle-outline" @click="handleBackward"></ion-icon>
+      <ion-icon
+        name="arrow-back-circle-outline"
+        @click="handleBackward"
+      ></ion-icon>
       <ion-icon
         name="arrow-forward-circle-outline"
         @click="handleForward"
@@ -42,9 +43,9 @@
 
 <script>
 import AchievementCard from "../components/AchievementCard.vue";
-import transX from "../composables/getTranslationX"
-import transY from "../composables/getTranslationY"
-import rot from "../composables/getRotation"
+import transX from "../composables/getTranslationX";
+import transY from "../composables/getTranslationY";
+import rot from "../composables/getRotation";
 
 export default {
   components: {
@@ -59,7 +60,7 @@ export default {
     },
     mqHeight() {
       return window.matchMedia("(min-height: 800px)");
-    }
+    },
   },
   data() {
     return {
@@ -71,7 +72,7 @@ export default {
           date: "March 2022",
           title: "National Merit Scholarship Winner",
           content:
-            "I earned a top 1% PSAT/SAT score to become a finalist (SAT score of 1580). I was the only one of the 17 finalists in high school to additionally earn the $2500 award.",
+            "I earned a top 1% PSAT/SAT score to become a finalist (SAT score of 1590). I was the only one of the 17 finalists in high school to additionally earn the $2500 award.",
         },
         {
           date: "June 2022",
@@ -111,8 +112,8 @@ export default {
       this.achievements.unshift(this.achievements.pop());
     },
     handleBackward() {
-      const temp = this.achievements.shift()
-      this.achievements.push(temp)
+      const temp = this.achievements.shift();
+      this.achievements.push(temp);
     },
     handleClick() {
       if (this.mqTablet.matches) {
@@ -120,13 +121,13 @@ export default {
       }
     },
     getTranslationX(i) {
-      return transX(this.animationXSpan, this.achievements.length, i-1) 
+      return transX(this.animationXSpan, this.achievements.length, i - 1);
     },
     getTranslationY(i) {
-      return transY(this.animationYSpan, this.achievements.length, i-1)
+      return transY(this.animationYSpan, this.achievements.length, i - 1);
     },
     getRotation(i) {
-      return rot(this.animationDegSpan, this.achievements.length, i-1)
+      return rot(this.animationDegSpan, this.achievements.length, i - 1);
     },
   },
 };
@@ -203,5 +204,4 @@ header .description h3 {
     transition: transform 800ms cubic-bezier(0.05, 0.43, 0.25, 0.95);
   }
 }
-
 </style>

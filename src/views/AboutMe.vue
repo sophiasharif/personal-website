@@ -6,7 +6,6 @@
         <div class="quick-facts">
           <p>Here's a bit about me:</p>
           <ol>
-            <li>I grew up in the Bay Area.</li>
             <li>I'm half Russian and half Iranian.</li>
             <ul>
               <li>I lived in Moscow for 3 years.</li>
@@ -16,9 +15,15 @@
               <li>I was on the national team in 2019.</li>
               <li>I was ranked #1 in Northern California.</li>
             </ul>
-            <li>I learned how to code in high school.</li>
             <li>I earned a world record in Google Snake.</li>
-            <li>I'm now studying math & CS at UCLA.</li>
+            <li>
+              I help organize LA Hacks, the largest & oldest student-run
+              hackathon in SoCal.
+            </li>
+            <li>
+              I'm currently a learning assistant for Math 32AH (honors
+              multivariable calculus)!
+            </li>
           </ol>
           <div class="links">
             <a href="https://www.linkedin.com/in/sophia-sharif/" target="_blank"

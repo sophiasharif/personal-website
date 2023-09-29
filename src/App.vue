@@ -16,9 +16,9 @@
     <router-link @click="handleRouteChange('Projects')" to="/projects">
       <button>projects</button>
     </router-link>
-    <router-link to="/math-papers">
+    <!-- <router-link to="/math-papers">
       <button @click="handleRouteChange('MathProjects')">math papers</button>
-    </router-link>
+    </router-link> -->
     <router-link to="/achievements">
       <button @click="handleRouteChange('Achievements')">achievements</button>
     </router-link>
@@ -35,9 +35,9 @@
       <router-link @click="handleRouteChange('Projects')" to="/projects">
         <button>projects</button>
       </router-link>
-      <router-link to="/math-papers">
+      <!-- <router-link to="/math-papers">
         <button @click="handleRouteChange('MathProjects')">math papers</button>
-      </router-link>
+      </router-link> -->
       <router-link to="/achievements">
         <button @click="handleRouteChange('Achievements')">achievements</button>
       </router-link>
@@ -92,7 +92,10 @@ export default {
     },
     handleRouteChange(newRoute) {
       const currentRoute = this.$route.name;
-      if (!this.routerShown && !(currentRoute == 'Home' && newRoute == 'Home')) {
+      if (
+        !this.routerShown &&
+        !(currentRoute == "Home" && newRoute == "Home")
+      ) {
         this.dissolveGrid();
       } else if (newRoute == currentRoute) {
         return;

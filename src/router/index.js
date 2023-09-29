@@ -1,9 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import ProjectSection from "../views/ProjectSection";
-import MathProjects from "../views/MathProjects";
+// import MathProjects from "../views/MathProjects";
 import AchievementSection from "../views/AchievementSection";
 import AboutMe from "../views/AboutMe";
-
 
 const routes = [
   {
@@ -15,11 +14,11 @@ const routes = [
     name: "Projects",
     component: ProjectSection,
   },
-  {
-    path: "/math-papers",
-    name: "MathProjects",
-    component: MathProjects,
-  },
+  // {
+  //   path: "/math-papers",
+  //   name: "MathProjects",
+  //   component: MathProjects,
+  // },
   {
     path: "/achievements",
     name: "Achievements",
@@ -32,9 +31,9 @@ const routes = [
   },
 ];
 
-const router = createRouter({ 
-    history: createWebHistory(process.env.BASE_URL),
-    routes 
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
+  routes,
 });
 
 export default router;
